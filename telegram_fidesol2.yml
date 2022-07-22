@@ -2,7 +2,7 @@ blueprint:
   name: Aviso Telegram con detección de presencia
   description: Notificar en Telegram si se detecta presencia
   domain: automation
-  source_url: https://github.com/jvaron-fidesol/hacs_fidesol/blob/main/telegram_fidesol.yml
+  source_url: https://github.com/jvaron-fidesol/hacs_fidesol/blob/main/telegram_fidesol2.yml
   input:
     notification_title:
       name: Notification title (Optional)
