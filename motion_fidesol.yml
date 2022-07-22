@@ -2,7 +2,7 @@ lueprint:
   name: Motion-activated Light - Fidesol
   description: Turn on a light when motion is detected.
   domain: automation
-  source_url: https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/motion_light.yaml
+  source_url: https://github.com/jvaron-fidesol/hacs_fidesol/blob/main/motion_fidesol.yml
   input:
     motion_entity:
       name: Motion Sensor
