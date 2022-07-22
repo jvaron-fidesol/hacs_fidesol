@@ -1,0 +1,33 @@
+blueprint:
+  name: Aviso Telegram con detección de presencia
+  description: Notificar en Telegram si se detecta presencia
+  domain: automation
+  source_url: hhttps://github.com/jvaron-fidesol/hacs_fidesol/blob/main/telegram_fidesol.yml
+  input:
+    notification_title:
+      name: Notification title (Optional)
+      description: 'Default: "Home Assistant - Fidesol"'
+      default: Home Assistant - Fidesol
+    notification_message:
+      name: Notification message (Required)
+      description: 'Default: "Presencia Detectada!"'
+      default: Presencia Detectada!
+    motion_entity:
+      name: Motion Sensor
+      selector:
+        entity:
+          domain: binary_sensor
+          device_class: motion
+trigger:
+  platform: state
+  entity_id: !input motion_entity
+  from: "off"
+  to: "on"
+  
+variables:
+  notification_title: !input 'notification_title'
+  notification_message: !input 'notification_message'
+action:
+- service: telegram_bot.send_message
+  data:
+    message: !input 'notification_message'
