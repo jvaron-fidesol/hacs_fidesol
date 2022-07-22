@@ -31,3 +31,5 @@ action:
 - service: telegram_bot.send_message
   data:
     message: !input 'notification_message'
+    title: !input 'notification_title'
+    parse_mode: html
