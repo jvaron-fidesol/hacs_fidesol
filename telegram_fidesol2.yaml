@@ -1,6 +1,6 @@
 blueprint:
-  name: Aviso Telegram con detección de presencia
-  description: Notificar en Telegram si se detecta presencia
+  name: Aviso Telegram con detección de presencia - Horario
+  description: Notificar en Telegram si se detecta presencia - Horario
   domain: automation
   source_url: https://github.com/jvaron-fidesol/hacs_fidesol/blob/main/telegram_fidesol2.yml
   input:
@@ -18,12 +18,29 @@ blueprint:
         entity:
           domain: binary_sensor
           device_class: motion
+    start_time:
+      name: Start Time
+      description: Time action should start
+      default: "17:00:00"
+      selector:
+        time:
+    end_time:
+      name: End Time
+      default: "00:00:00"
+      description: Time action should stop
+      selector:
+        time:
 trigger:
   platform: state
   entity_id: !input motion_entity
   from: "off"
   to: "on"
-  
+condition:
+  alias: "Time"
+  condition: time
+  # At least one of the following is required.
+  after: !input start_time
+  before: !input end_time
 variables:
   notification_title: !input 'notification_title'
   notification_message: !input 'notification_message'
