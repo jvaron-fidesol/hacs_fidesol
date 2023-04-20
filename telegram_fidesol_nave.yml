@@ -1,6 +1,6 @@
 blueprint:
-  name: Aviso Telegram con detección de presencia - Naves
-  description: Notificar en Telegram si se detecta presencia - Con Horario
+  name: Aviso Telegram con detección de presencia - Hora
+  description: Notificar en Telegram si se detecta presencia - Hora
   domain: automation
   source_url: https://github.com/jvaron-fidesol/hacs_fidesol/blob/main/telegram_fidesol_nave.yml
   input:
@@ -19,12 +19,12 @@ blueprint:
           domain: binary_sensor
           device_class: motion
     start_time:
-      name: Hora Inicio
+      name: Start time
       description: Select the start time of the notification period
       selector:
         time:
     end_time:
-      name: Hora Fin
+      name: End time
       description: Select the end time of the notification period
       selector:
         time:
@@ -43,8 +43,17 @@ blueprint:
     notification_title: !input 'notification_title'
     notification_message: !input 'notification_message'
   action:
+    - service: homeassistant.turn_on
+      entity_id: switch.notify_telegram
+    - wait_template: "{{ is_state('switch.notify_telegram', 'on') }}"
+      timeout: '00:00:01'
+    - condition: time
+      after: !input start_time
+      before: !input end_time
     - service: telegram_bot.send_message
       data:
         title: !input 'notification_title'
         message: !input 'notification_message'
         parse_mode: html
+    - service: homeassistant.turn_off
+      entity_id: switch.notify_telegram
