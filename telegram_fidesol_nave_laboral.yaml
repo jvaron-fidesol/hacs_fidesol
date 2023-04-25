@@ -1,6 +1,6 @@
 blueprint:
-  name: Aviso Telegram con detección de presencia - Horario
-  description: Notificar en Telegram si se detecta presencia - Horario
+  name: Aviso Telegram con detección de presencia - Horario Laboral
+  description: Notificar en Telegram si se detecta presencia - Horario Laboral
   domain: automation
   source_url: https://github.com/jvaron-fidesol/hacs_fidesol/blob/main/telegram_fidesol_nave_laboral.yaml
   input:
