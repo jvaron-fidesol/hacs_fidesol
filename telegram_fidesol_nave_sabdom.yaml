@@ -2,7 +2,7 @@ blueprint:
   name: Aviso Telegram con detección de presencia - Horario Sabado-Domingo
   description: Notificar en Telegram si se detecta presencia - Horario Sabado Domingo
   domain: automation
-  source_url: https://github.com/jvaron-fidesol/hacs_fidesol/blob/main/telegram_fidesol_nave_sabdom.yml
+  source_url: https://github.com/jvaron-fidesol/hacs_fidesol/blob/main/telegram_fidesol_nave_sabdom.yaml
   input:
     notification_title:
       name: Notification title (Optional)
