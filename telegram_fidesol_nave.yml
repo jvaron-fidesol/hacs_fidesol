@@ -41,6 +41,12 @@ condition:
   # At least one of the following is required.
   after: !input start_time
   before: !input end_time
+  weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
 variables:
   notification_title: !input 'notification_title'
   notification_message: !input 'notification_message'
